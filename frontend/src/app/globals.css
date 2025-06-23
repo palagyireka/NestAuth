@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #12326e;
+  --darker-blue: #03194d;
+  --primary-gradient: linear-gradient(90deg, #12326e 0%, #03194d 100%);
+  --primary-border: #dddddd;
+  --font-input-color: #222222;
+  --form-btn-color: #0ea6ce;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+.text-input-color {
+  color: var(--font-input-color);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+body {
+  background: var(--primary-gradient);
+  color: var(--foreground);
+  font-family: var(--font-source-sans);
+}
