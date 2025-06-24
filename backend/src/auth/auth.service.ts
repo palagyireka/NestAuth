@@ -4,6 +4,7 @@ import ValidateUserInput from './types/validateUser.input';
 import { LoginData } from './types/loginData';
 import { AuthResult } from './types/authResult';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,9 @@ export class AuthService {
     if (!user) {
       return null;
     }
-    if (user.password !== input.password) {
+    const isMatch = await bcrypt.compare(input.password, user.password_secret);
+
+    if (!isMatch) {
       return null;
     }
     return {
