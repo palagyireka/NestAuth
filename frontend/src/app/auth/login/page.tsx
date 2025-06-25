@@ -37,15 +37,16 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const data = await response.json()
       if (!response.ok) {
-        throw new Error(data.message || 'Login failed')
+        const err = await response.json()
+        throw new Error(err.message || 'Login failed')
       }
-      console.log('Login successful:', data)
+
+      const res = await response.json()
       dispatch(
         login({
-          jwtAccessToken: data.accessToken,
-          user: data.email,
+          jwtAccessToken: res.data.accessToken,
+          user: res.data.user,
         }),
       )
       router.push('/')

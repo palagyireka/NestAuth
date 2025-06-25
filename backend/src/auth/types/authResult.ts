@@ -1,6 +1,6 @@
+import { LoginData } from './loginData'
 export interface AuthResult {
-  userId: number;
-  email: string;
-  accessToken: string;
-  refreshToken?: string; // Optional field for refresh token
+  user: LoginData
+  accessToken: string
+  refreshToken?: string // Optional field for refresh token
 }
